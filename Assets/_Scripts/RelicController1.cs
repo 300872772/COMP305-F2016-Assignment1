@@ -136,7 +136,7 @@ public class RelicController1 : MonoBehaviour {
 		if (this.Drift == 0) {
 			this.Drift = 1;
 		}
-		Vector2 resetPosition = new Vector2 (Random.Range(-290f,290f), 400f);
+		Vector2 resetPosition = new Vector2 (Random.Range(-280f,280f), Random.Range(300f,450f));
 		this._transform.position = resetPosition;
 
 	}

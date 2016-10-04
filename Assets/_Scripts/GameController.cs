@@ -27,11 +27,12 @@ public class GameController : MonoBehaviour {
 	private AudioSource _endGameSound;
 
 	//PUBLIC INSTANCE VARIABLE++++++++++++++++++++++++
-	public int killerRelic1Number = 6; 
+	public int killerRelic1Number = 3; 
 	public RelicController1 killerRelic;
 	public int enemiesNumber = 6; 
 	public EnemyControl enemies;
-
+	public int powerRelicNumber = 4; 
+	public RelicController1 powerRelic;
 
 	[Header("Labels")]
 	public Text LivesLabel;
@@ -87,7 +88,7 @@ public class GameController : MonoBehaviour {
         */
 	void Start () {
 
-		this.LivesValue = 50;
+		this.LivesValue = 200;
 		this.ScoreValue = 0;
 		this.GameOverLabel.gameObject.SetActive (false);
 		this.FinalScoreLabel.gameObject.SetActive (false);
@@ -101,7 +102,9 @@ public class GameController : MonoBehaviour {
 		for (int count = 0; count < this.enemiesNumber; count++) {
 			Instantiate (this.enemies.gameObject);
 		}
-
+		for (int count = 0; count < this.powerRelicNumber; count++) {
+			Instantiate (this.powerRelic.gameObject);
+		}
 	}
 	
 
@@ -141,6 +144,7 @@ public class GameController : MonoBehaviour {
 		this.powerRelic2.gameObject.SetActive (false);
 		this.killerRelic.gameObject.SetActive (false);
 		this.enemies.gameObject.SetActive (false);
+		this.powerRelic.gameObject.SetActive (false);
 		this.RestartButton.gameObject.SetActive (true);
 
 		this._endGameSound.Play ();
