@@ -3,14 +3,21 @@ using System.Collections;
 
 public class RelicController2 : MonoBehaviour {
 
-	//PUBLIC INTANSCE VARIABLES++++++++++++
-	//[SerializeField]
+	//PRIVATE INTANSCE VARIABLES++++++++++++
 	private int _speed;
 	private int _drift;
-	//private Transform _newTransform;
 	private Transform _transform;
-
 	private bool _direction;
+	private AudioSource _audio;
+	private GameController _controller;
+
+	//PUBLIC INTANSCE VARIABLES++++++++++++
+	//[SerializeField]
+	public int Health = 2;
+	public Transform Explosion;
+	public AudioSource HitSound;
+
+
 
 	//PUBLIC PROPERTIES++++++++++++++++++++
 
@@ -98,6 +105,58 @@ public class RelicController2 : MonoBehaviour {
 		Vector2 resetPosition = new Vector2 (Random.Range(-290f,290f), 400f);
 		this._transform.position = resetPosition;
 	
+	}
+
+
+	void OnCollisionEnter2D(Collision2D theCollision)
+	{
+		// Uncomment this line to check for collision
+		//Debug.Log("Hit"+ theCollision.gameObject.name);
+		// this line looks for "laser" in the names of
+		// anything collided.
+		if(theCollision.gameObject.name.Contains("Laser"))
+		{
+			LaserBehaviour laser =
+				theCollision.gameObject.GetComponent
+				("LaserBehaviour") as LaserBehaviour;
+			Health -= laser.Damage;
+			//Destroy (theCollision.gameObject);
+
+			Vector2 newPosition;
+			//	this._newTransform.position = newPosition;
+			newPosition = this._transform.position;
+
+			newPosition.y = -340 ;
+
+
+				this._reset();
+
+		
+			// Plays a sound from this object's AudioSource
+			//this._audio.Play();
+			this.HitSound.Play();
+		}
+
+		if (theCollision.gameObject.name.Contains ("Player Ship")) {
+			//_controller.DecreaseLives (1);
+		}
+
+		if (Health <= 0)
+		{
+			// Check if explosion was set
+			if(Explosion)
+			{
+				GameObject exploder = ((Transform)Instantiate(Explosion, this.
+					transform.position, this.transform.rotation)).gameObject;
+				Destroy(exploder, 2.0f);
+			}
+
+			//_controller.KilledEnemy();
+		//	_controller.IncreaseScore(10);
+
+
+			//Destroy (this.gameObject);
+		}
 	}
 
 }

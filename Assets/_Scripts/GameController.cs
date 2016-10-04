@@ -54,7 +54,15 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
+	//METHODES++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	/**
+        * <summary>
+        * This is the method for starting the laser behaviour class
+        * </summary>
+        * 
+        * @method Start
+        * @returns {void} 
+        */
 	void Start () {
 
 		this.LivesValue = 50;
