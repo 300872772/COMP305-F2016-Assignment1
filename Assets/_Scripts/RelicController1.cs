@@ -1,6 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+/**
+ * This is a retro shooter game 
+ * 
+ * @FileName: RelicController1.cs
+ * @Author Md Mamunur Rahman
+ * @student ID: 300872772
+ * @Last Update 03-October-2016
+ * @description: this file is RelicController1 cs file for the game
+ */
 
+/**  
+* <summary>  
+* This is the RelicController1 class to control Relics.  
+* </summary>  
+*   
+* @class RelicController1  
+*/
 public class RelicController1 : MonoBehaviour {
 	//PUBLIC INTANSCE VARIABLES++++++++++++
 	//[SerializeField]
@@ -30,7 +46,14 @@ public class RelicController1 : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
+	/**
+        * <summary>
+        * This is the method for starting the RelicController1 class which initiates value
+        * </summary>
+        * 
+        * @method Start
+        * @returns {void} 
+        */
 	void Start () {
 		this._transform = this.GetComponent<Transform> (); // get a ref to the TRansform of my ocean
 		//this._newTransform = new Transform (); //instance a new Transform
@@ -39,7 +62,14 @@ public class RelicController1 : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
+	/**
+        * <summary>
+        * This method is called once per frame.
+        * </summary>
+        * 
+        * @method Update
+        * @returns {void} 
+        */
 	void Update () {
 
 		this._move();
@@ -47,10 +77,14 @@ public class RelicController1 : MonoBehaviour {
 		this._borderCheck();
 	}
 
-	/*
-* this method moves the game object bdown the screen
-	*/
-
+	/**
+        * <summary>
+        * This private method is called to move the object on screen.
+        * </summary>
+        * 
+        * @method _move
+        * @returns {void} 
+        */
 	private void _move(){
 		Vector2 newPosition;
 		//	this._newTransform.position = newPosition;
@@ -71,9 +105,13 @@ public class RelicController1 : MonoBehaviour {
 	}
 
 	/**
-	 * this method checks to see if my game object has reached the top border 
-	 */
-
+        * <summary>
+        * This private method is check the border of the game screen for objects.
+        * </summary>
+        * 
+        * @method _borderCheck
+        * @returns {void} 
+        */
 	private void _borderCheck(){
 
 		if (this._transform.position.y <= -300) {
@@ -85,11 +123,13 @@ public class RelicController1 : MonoBehaviour {
 	}
 
 	/**
-	 * this method resets the game object to it's original position
-	 * 
-	 * 
-	 */ 
-
+	* <summary>
+	* This private method resets the game object to it's original position.
+		* </summary>
+		* 
+		* @method _reset
+		* @returns {void} 
+	*/
 	private void _reset(){
 		this.Speed = Random.Range(2,3);
 		this.Drift = Random.Range (-1, 1);

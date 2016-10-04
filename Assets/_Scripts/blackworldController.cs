@@ -1,11 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+/**
+ * This is a retro shooter game 
+ * 
+ * @FileName: blackworldController.cs
+ * @Author Md Mamunur Rahman
+ * @student ID: 300872772
+ * @Last Update 03-October-2016
+ * @description: this file is blackworldController cs file for the game
+ */
 
+/**  
+* <summary>  
+* This is the blackworldController class to control the back screen.  
+* </summary>  
+*   
+* @class blackworldController  
+*/
 public class blackworldController : MonoBehaviour {
-	//PUBLIC INTANSCE VARIABLES++++++++++++
-	//[SerializeField]
+	//PRIVATE INTANSCE VARIABLES++++++++++++
 	private int _speed;
-	//private Transform _newTransform;
 	private Transform _transform;
 
 	//PUBLIC PROPERTIES++++++++++++++++++++
@@ -19,7 +33,14 @@ public class blackworldController : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
+	/**
+        * <summary>
+        * This is the method for starting the blackworldController class which initiates value
+        * </summary>
+        * 
+        * @method Start
+        * @returns {void} 
+        */
 	void Start () {
 		this._transform = this.GetComponent<Transform> (); // get a ref to the TRansform of my ocean
 		//this._newTransform = new Transform (); //instance a new Transform
@@ -28,7 +49,14 @@ public class blackworldController : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
+	/**
+        * <summary>
+        * This method is called once per frame.
+        * </summary>
+        * 
+        * @method Update
+        * @returns {void} 
+        */
 	void Update () {
 
 		this._move();
@@ -36,9 +64,14 @@ public class blackworldController : MonoBehaviour {
 		this._borderCheck();
 	}
 
-	/*
-* this method moves the game object bdown the screen
-	*/
+	/**
+        * <summary>
+        * This private method is called to move the object on screen.
+        * </summary>
+        * 
+        * @method _move
+        * @returns {void} 
+        */
 
 	private void _move(){
 		Vector2 newPosition;
@@ -52,8 +85,13 @@ public class blackworldController : MonoBehaviour {
 	}
 
 	/**
-	 * this method checks to see if my game object has reached the top border 
-	 */
+        * <summary>
+        * This private method is check the border of the game screen for objects.
+        * </summary>
+        * 
+        * @method _borderCheck
+        * @returns {void} 
+        */
 
 	private void _borderCheck(){
 
@@ -66,10 +104,13 @@ public class blackworldController : MonoBehaviour {
 	}
 
 	/**
-	 * this method resets the game object to it's original position
-	 * 
-	 * 
-	 */ 
+	* <summary>
+	* This private method resets the game object to it's original position.
+		* </summary>
+		* 
+		* @method _reset
+		* @returns {void} 
+	*/ 
 
 	private void _reset(){
 

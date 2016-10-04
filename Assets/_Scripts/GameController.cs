@@ -2,17 +2,36 @@
 using System.Collections;
 using  UnityEngine.UI;
 using UnityEngine.SceneManagement;
+/**
+ * This is a retro shooter game 
+ * 
+ * @FileName: GameController.cs
+ * @Author Md Mamunur Rahman
+ * @student ID: 300872772
+ * @Last Update 03-October-2016
+ * @description: this file is GameController cs file for the game
+ */
 
+/**  
+* <summary>  
+* This is the GameController class which controls the whole game from top.  
+* </summary>  
+*   
+* @class GameController  
+*/
 public class GameController : MonoBehaviour {
 
-	//PRIVATE INSTANCE VARIABLE
+	//PRIVATE INSTANCE VARIABLE+++++++++++++++++++++++
 	private int _livesValue;
 	private int _scoreValue;
 	private AudioSource _endGameSound;
 
-	//PUBLIC INSTANCE VARIABLE
+	//PUBLIC INSTANCE VARIABLE++++++++++++++++++++++++
 	public int killerRelic1Number = 6; 
 	public RelicController1 killerRelic;
+	public int enemiesNumber = 6; 
+	public EnemyControl enemies;
+
 
 	[Header("Labels")]
 	public Text LivesLabel;
@@ -29,7 +48,8 @@ public class GameController : MonoBehaviour {
 	public GameObject killerRelic3;
 	public GameObject powerRelic1;
 	public GameObject powerRelic2;
-	//PUBLIC PROPERTIES
+
+	//PUBLIC PROPERTIES++++++++++++++++++++++++++++++++
 
 	public int LivesValue {
 		get{ 
@@ -54,10 +74,12 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+
+
 	//METHODES++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	/**
         * <summary>
-        * This is the method for starting the laser behaviour class
+        * This is the method for starting the GameController class
         * </summary>
         * 
         * @method Start
@@ -76,16 +98,34 @@ public class GameController : MonoBehaviour {
 		for (int count = 0; count < this.killerRelic1Number; count++) {
 			Instantiate (this.killerRelic.gameObject);
 		}
-
+		for (int count = 0; count < this.enemiesNumber; count++) {
+			Instantiate (this.enemies.gameObject);
+		}
 
 	}
 	
-	// Update is called once per frame
+
+	/**
+        * <summary>
+        * This method is called once per frame.
+        * </summary>
+        * 
+        * @method Update
+        * @returns {void} 
+        */
 	void Update () {
 	
 	}
 
 
+	/**
+        * <summary>
+        * This private method is called to get  the game into an end.
+        * </summary>
+        * 
+        * @method _endGame
+        * @returns {void} 
+        */
 	private void _endGame(){
 		this.GameOverLabel.gameObject.SetActive (true);
 		this.FinalScoreLabel.text = "FINAL SCORE: " + this.ScoreValue;
@@ -100,7 +140,9 @@ public class GameController : MonoBehaviour {
 		this.powerRelic1.gameObject.SetActive (false);
 		this.powerRelic2.gameObject.SetActive (false);
 		this.killerRelic.gameObject.SetActive (false);
+		this.enemies.gameObject.SetActive (false);
 		this.RestartButton.gameObject.SetActive (true);
+
 		this._endGameSound.Play ();
 	}
 

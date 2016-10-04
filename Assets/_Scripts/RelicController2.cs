@@ -1,22 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+/**
+ * This is a retro shooter game 
+ * 
+ * @FileName: RelicController2.cs
+ * @Author Md Mamunur Rahman
+ * @student ID: 300872772
+ * @Last Update 03-October-2016
+ * @description: this file is RelicController2 cs file for the game
+ */
 
+/**  
+* <summary>  
+* This is the RelicController2 class to control Relics.  
+* </summary>  
+*   
+* @class RelicController2  
+*/
 public class RelicController2 : MonoBehaviour {
 
-	//PRIVATE INTANSCE VARIABLES++++++++++++
-	private int _speed;
-	private int _drift;
+	//private Transform _newTransform;
 	private Transform _transform;
 	private bool _direction;
-	private AudioSource _audio;
-	private GameController _controller;
 
 	//PUBLIC INTANSCE VARIABLES++++++++++++
-	//[SerializeField]
-	public int Health = 2;
-	public Transform Explosion;
-	public AudioSource HitSound;
-
+	private int _speed;
+	private int _drift;
 
 
 	//PUBLIC PROPERTIES++++++++++++++++++++
@@ -38,16 +47,30 @@ public class RelicController2 : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
+	/**
+        * <summary>
+        * This is the method for starting the RelicController2 class which initiates value
+        * </summary>
+        * 
+        * @method Start
+        * @returns {void} 
+        */
 	void Start () {
 		this._transform = this.GetComponent<Transform> (); // get a ref to the TRansform of my ocean
 		//this._newTransform = new Transform (); //instance a new Transform
 
 		_reset ();
 
-	}
+	}	
 
-	// Update is called once per frame
+	/**
+        * <summary>
+        * This method is called once per frame.
+        * </summary>
+        * 
+        * @method Update
+        * @returns {void} 
+        */
 	void Update () {
 
 		this._move();
@@ -55,9 +78,14 @@ public class RelicController2 : MonoBehaviour {
 		this._borderCheck();
 	}
 
-	/*
-* this method moves the game object bdown the screen
-	*/
+	/**
+        * <summary>
+        * This private method is called to move the object on screen.
+        * </summary>
+        * 
+        * @method _move
+        * @returns {void} 
+        */
 
 	private void _move(){
 		Vector2 newPosition;
@@ -66,12 +94,6 @@ public class RelicController2 : MonoBehaviour {
 
 		newPosition.y -= this.Speed ;
 
-		/*if (_direction == false) {
-			newPosition.x -= this.Speed ;
-		}
-		if (_direction == true) {
-			newPosition.x += this.Speed ;
-		}*/
 		newPosition.x += this.Drift ;
 
 		this._transform.position = newPosition;
@@ -79,9 +101,13 @@ public class RelicController2 : MonoBehaviour {
 	}
 
 	/**
-	 * this method checks to see if my game object has reached the top border 
-	 */
-
+        * <summary>
+        * This private method is check the border of the game screen for objects.
+        * </summary>
+        * 
+        * @method _borderCheck
+        * @returns {void} 
+        */
 	private void _borderCheck(){
 
 		if (this._transform.position.y <= -300) {
@@ -93,10 +119,13 @@ public class RelicController2 : MonoBehaviour {
 	}
 
 	/**
-	 * this method resets the game object to it's original position
-	 * 
-	 * 
-	 */ 
+	* <summary>
+	* This private method resets the game object to it's original position.
+		* </summary>
+		* 
+		* @method _reset
+		* @returns {void} 
+	*/
 
 	private void _reset(){
 		this.Speed = Random.Range(4,10);
@@ -105,58 +134,6 @@ public class RelicController2 : MonoBehaviour {
 		Vector2 resetPosition = new Vector2 (Random.Range(-290f,290f), 400f);
 		this._transform.position = resetPosition;
 	
-	}
-
-
-	void OnCollisionEnter2D(Collision2D theCollision)
-	{
-		// Uncomment this line to check for collision
-		//Debug.Log("Hit"+ theCollision.gameObject.name);
-		// this line looks for "laser" in the names of
-		// anything collided.
-		if(theCollision.gameObject.name.Contains("Laser"))
-		{
-			LaserBehaviour laser =
-				theCollision.gameObject.GetComponent
-				("LaserBehaviour") as LaserBehaviour;
-			Health -= laser.Damage;
-			//Destroy (theCollision.gameObject);
-
-			Vector2 newPosition;
-			//	this._newTransform.position = newPosition;
-			newPosition = this._transform.position;
-
-			newPosition.y = -340 ;
-
-
-				this._reset();
-
-		
-			// Plays a sound from this object's AudioSource
-			//this._audio.Play();
-			this.HitSound.Play();
-		}
-
-		if (theCollision.gameObject.name.Contains ("Player Ship")) {
-			//_controller.DecreaseLives (1);
-		}
-
-		if (Health <= 0)
-		{
-			// Check if explosion was set
-			if(Explosion)
-			{
-				GameObject exploder = ((Transform)Instantiate(Explosion, this.
-					transform.position, this.transform.rotation)).gameObject;
-				Destroy(exploder, 2.0f);
-			}
-
-			//_controller.KilledEnemy();
-		//	_controller.IncreaseScore(10);
-
-
-			//Destroy (this.gameObject);
-		}
 	}
 
 }
